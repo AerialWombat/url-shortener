@@ -1,0 +1,52 @@
+@import "../../App.scss";
+
+.container {
+  padding: 1rem;
+  width: 100%;
+  background: $dark-grey;
+
+  .form_wrapper {
+    border: 1px lightcoral solid;
+    padding: 1rem;
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+    justify-content: center;
+
+    .password_requirements {
+      list-style: none;
+
+      li {
+        font-size: 0.75rem;
+        margin-bottom: 0.5rem;
+
+        &.dashed {
+          color: red;
+        }
+
+        &.checked {
+          color: $accent-color;
+        }
+      }
+    }
+
+    .input_wrapper {
+      margin: 0.5rem 0;
+      width: 100%;
+      display: flex;
+      flex-flow: column nowrap;
+
+      label {
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+      }
+
+      input {
+        height: 2rem;
+        width: 100%;
+        border: none;
+        padding: 0.25rem;
+      }
+    }
+  }
+}
