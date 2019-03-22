@@ -7,7 +7,7 @@ import styles from "./header.module.scss";
 // ^ Nevermind, boolean prop should be fine
 const Header = () => (
   <header className={styles.container}>
-    <h1 className={styles.brand}>Header</h1>
+    <h1 className={styles.brand}>URL SHORT</h1>
     <span>
       <Link className={styles.navlink} to="/">
         Shortener
