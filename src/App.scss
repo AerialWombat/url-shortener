@@ -1,3 +1,13 @@
+/* Global Variables
+======================================*/
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,700");
+$font-stack: "Roboto", Arial, Helvetica, sans-serif;
+$light-grey: #f2f2f2;
+$dark-grey: #c9cacc;
+$light-black: #222222;
+$dark-black: #171717;
+$accent-color: #45a51d;
+
 /* CSS Reset
 ======================================*/
 
@@ -8,7 +18,7 @@
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: $font-stack;
   line-height: 1.4;
 }
 
@@ -19,17 +29,21 @@ a {
 
 /* General
 ======================================*/
-body,
-html {
-  height: 100%;
-}
+// body,
+// html {
+//   height: 100%;
+// }
 
-:global {
-  #root {
-    height: 100%;
+// :global {
+//   #root {
+//     height: 100%;
 
-    .App {
-      height: inherit;
-    }
-  }
+//     .App {
+//       height: inherit;
+//     }
+//   }
+// }
+
+main {
+  background-color: $light-grey;
 }
