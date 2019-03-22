@@ -8,7 +8,6 @@ import styles from "./main.module.scss";
 
 const Main = () => (
   <main className={styles.container}>
-    <h1 className={styles.title}>URL Shortener</h1>
     <Switch>
       <Route exact path="/" component={Shortener} />
       <Route path="/login" component={Login} />
