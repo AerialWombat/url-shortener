@@ -9,7 +9,6 @@ class Register extends Component {
       email: null,
       username: null,
       password: null,
-      passwordConfirm: null,
       passHasUpper: null,
       passHasLower: null,
       passHasNumber: null,
@@ -58,7 +57,17 @@ class Register extends Component {
       : this.setState({ passMinLength: false });
   };
 
-  onRegisterSubmit = () => {};
+  onRegisterSubmit = () => {
+    fetch("http://localhost:5000/api", {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: this.state.username,
+        username: this.state.username,
+        password: this.state.password
+      })
+    }).then(response => console.log(response.json()));
+  };
 
   render() {
     const {
@@ -123,7 +132,11 @@ class Register extends Component {
             </li>
           </ul>
           <div>
-            <input type="submit" value="Register" />
+            <input
+              type="submit"
+              value="Register"
+              onClick={this.onRegisterSubmit}
+            />
           </div>
         </form>
       </div>
