@@ -57,9 +57,9 @@ class Register extends Component {
       : this.setState({ passMinLength: false });
   };
 
-  onRegisterSubmit = () => {
-    fetch("http://localhost:5000/api", {
-      method: "GET",
+  onRegisterSubmit = event => {
+    fetch("http://localhost:5000/api/register", {
+      method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         email: this.state.username,
@@ -67,6 +67,7 @@ class Register extends Component {
         password: this.state.password
       })
     }).then(response => console.log(response.json()));
+    event.preventDefault();
   };
 
   render() {
@@ -80,9 +81,9 @@ class Register extends Component {
     return (
       <div className={styles.container}>
         <h1>Register</h1>
-        <form className={styles.form_wrapper}>
+        <form className={styles.form_wrapper} onSubmit={this.onRegisterSubmit}>
           <div className={styles.input_wrapper}>
-            <label for="email">Email:</label>
+            <label htmlFor="email">Email:</label>
             <input
               type="email"
               name="email"
@@ -92,7 +93,7 @@ class Register extends Component {
             />
           </div>
           <div className={styles.input_wrapper}>
-            <label for="username">Username:</label>
+            <label htmlFor="username">Username:</label>
             <input
               type="text"
               name="username"
@@ -102,7 +103,7 @@ class Register extends Component {
             />
           </div>
           <div className={styles.input_wrapper}>
-            <label for="password">Password:</label>
+            <label htmlFor="password">Password:</label>
             <input
               type="password"
               name="password"
@@ -132,11 +133,7 @@ class Register extends Component {
             </li>
           </ul>
           <div>
-            <input
-              type="submit"
-              value="Register"
-              onClick={this.onRegisterSubmit}
-            />
+            <input type="submit" value="Register" />
           </div>
         </form>
       </div>
