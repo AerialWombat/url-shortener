@@ -5,21 +5,28 @@ import styles from "./header.module.scss";
 
 // Will need to use state to determine shown options based on log-in status
 // ^ Nevermind, boolean prop should be fine
-const Header = ({ username }) => (
+const Header = ({ signedIn, username }) => (
   <header className={styles.container}>
     <h1 className={styles.brand}>URL SHORT</h1>
-    <p>Logged in as {username}</p>
-    <span>
-      <Link className={styles.navlink} to="/">
-        Shortener
+    <p>Welcome, {username}</p>
+
+    {signedIn ? (
+      <Link className={styles.navlink} to="/signout">
+        Sign Out
       </Link>
-      <Link className={styles.navlink} to="/login">
-        Login
-      </Link>
-      <Link className={styles.navlink} to="/register">
-        Register
-      </Link>
-    </span>
+    ) : (
+      <span>
+        <Link className={styles.navlink} to="/">
+          Shortener
+        </Link>
+        <Link className={styles.navlink} to="/login">
+          Login
+        </Link>
+        <Link className={styles.navlink} to="/register">
+          Register
+        </Link>
+      </span>
+    )}
   </header>
 );
 
