@@ -50,3 +50,20 @@
     }
   }
 }
+
+.containerComplete {
+  height: 90vh;
+  display: flex;
+  align-items: center;
+
+  div {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+
+    a {
+      color: $accent-color;
+      font-weight: bold;
+    }
+  }
+}

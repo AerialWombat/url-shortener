@@ -158,7 +158,7 @@ class Register extends Component {
       );
     } else {
       return (
-        <section>
+        <section className={styles.containerComplete}>
           <div>
             <h1>Registration complete</h1>
             <Link to="/">Return</Link>
