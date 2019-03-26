@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import { Redirect } from "react-router-dom";
 import styles from "./register.module.scss";
 
 class Register extends Component {
@@ -13,7 +13,9 @@ class Register extends Component {
       passHasLower: null,
       passHasNumber: null,
       passHasSpecialChar: null,
-      passMinLength: null
+      passMinLength: null,
+      responseMessage: null,
+      registrationComplete: false
     };
   }
 
@@ -66,7 +68,16 @@ class Register extends Component {
         username: this.state.username,
         password: this.state.password
       })
-    }).then(response => console.log(response.json()));
+    }).then(
+      response => {
+        if (response.status !== 200) {
+          response
+            .json()
+            .then(data => this.setState({ responseMessage: data.msg }));
+        } else this.setState({ registrationComplete: true });
+      }
+      // response.json().then(data => this.setState({ responseMessage: data.msg }))
+    );
     event.preventDefault();
   };
 
@@ -76,68 +87,81 @@ class Register extends Component {
       passHasLower,
       passHasNumber,
       passHasSpecialChar,
-      passMinLength
+      passMinLength,
+      registrationComplete
     } = this.state;
-    return (
-      <div className={styles.container}>
-        <h1>Register</h1>
-        <form className={styles.form_wrapper} onSubmit={this.onRegisterSubmit}>
-          <div className={styles.input_wrapper}>
-            <label htmlFor="email">Email:</label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              onChange={this.onEmailChange}
-              required
-            />
-          </div>
-          <div className={styles.input_wrapper}>
-            <label htmlFor="username">Username:</label>
-            <input
-              type="text"
-              name="username"
-              id="username"
-              onChange={this.onUsernameChange}
-              required
-            />
-          </div>
-          <div className={styles.input_wrapper}>
-            <label htmlFor="password">Password:</label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*(),.?:{}|<>]).{8,}"
-              title="Must contain at least one number, one uppercase and lowercase letter, one special character, and at least 8 or more characters"
-              onChange={this.onPasswordChange}
-              required
-            />
-          </div>
-          <ul className={styles.password_requirements}>
-            <li className={passMinLength ? styles.checked : styles.dashed}>
-              At least 8 characters
-            </li>
-            <li
-              className={
-                passHasUpper && passHasLower ? styles.checked : styles.dashed
-              }
-            >
-              Contains uppercase and lowercase characters
-            </li>
-            <li className={passHasNumber ? styles.checked : styles.dashed}>
-              Contains at least one number
-            </li>
-            <li className={passHasSpecialChar ? styles.checked : styles.dashed}>
-              Contains at least one special character
-            </li>
-          </ul>
-          <div>
-            <input type="submit" value="Register" />
-          </div>
-        </form>
-      </div>
-    );
+
+    // Redirect if registration complete
+    if (!registrationComplete) {
+      return (
+        <div className={styles.container}>
+          <h1>Register</h1>
+          <form
+            className={styles.form_wrapper}
+            onSubmit={this.onRegisterSubmit}
+          >
+            <p>{this.state.responseMessage}</p>
+            <div className={styles.input_wrapper}>
+              <label htmlFor="email">Email:</label>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                onChange={this.onEmailChange}
+                required
+              />
+            </div>
+            <div className={styles.input_wrapper}>
+              <label htmlFor="username">Username:</label>
+              <input
+                type="text"
+                name="username"
+                id="username"
+                onChange={this.onUsernameChange}
+                required
+              />
+            </div>
+            <div className={styles.input_wrapper}>
+              <label htmlFor="password">Password:</label>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*(),.?:{}|<>]).{8,}"
+                title="Must contain at least one number, one uppercase and lowercase letter, one special character, and at least 8 or more characters"
+                onChange={this.onPasswordChange}
+                required
+              />
+            </div>
+            <ul className={styles.password_requirements}>
+              <li className={passMinLength ? styles.checked : styles.dashed}>
+                At least 8 characters
+              </li>
+              <li
+                className={
+                  passHasUpper && passHasLower ? styles.checked : styles.dashed
+                }
+              >
+                Contains uppercase and lowercase characters
+              </li>
+              <li className={passHasNumber ? styles.checked : styles.dashed}>
+                Contains at least one number
+              </li>
+              <li
+                className={passHasSpecialChar ? styles.checked : styles.dashed}
+              >
+                Contains at least one special character
+              </li>
+            </ul>
+            <div>
+              <input type="submit" value="Register" />
+            </div>
+          </form>
+        </div>
+      );
+    } else {
+      return <Redirect to="/" />;
+    }
   }
 }
 
