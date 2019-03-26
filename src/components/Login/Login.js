@@ -1,9 +1,77 @@
-import React from "react";
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
-const Login = () => (
-  <div>
-    <h1>/Login</h1>
-  </div>
-);
+import styles from "./login.module.scss";
+
+class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: null,
+      password: null,
+      responseMessage: null
+    };
+  }
+
+  onEmailChange = event => {
+    this.setState({ email: event.target.value });
+  };
+
+  onPasswordChange = event => {
+    this.setState({ password: event.target.value });
+  };
+
+  onLoginSubmit = event => {
+    fetch("http://localhost:5000/api/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: this.state.email,
+        password: this.state.password
+      })
+    });
+    event.preventDefault();
+  };
+
+  render() {
+    return (
+      <section className={styles.container}>
+        <h1>Login</h1>
+        <form className={styles.form_wrapper} onSubmit={this.onLoginSubmit}>
+          <p>{this.state.responseMessage}</p>
+          <div className={styles.input_wrapper}>
+            <label htmlFor="email">Email:</label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              onChange={this.onEmailChange}
+              required
+            />
+          </div>
+          <div className={styles.input_wrapper}>
+            <label htmlFor="password">Password:</label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              onChange={this.onPasswordChange}
+              required
+            />
+          </div>
+          <div>
+            <input type="submit" value="Register" />
+          </div>
+        </form>
+        <div className={styles.navigation}>
+          <span>
+            Need to sign up? <Link to="/login">Sign up here</Link>
+          </span>
+          <Link to="/register">Return</Link>
+        </div>
+      </section>
+    );
+  }
+}
 
 export default Login;
