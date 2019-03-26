@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 import styles from "./login.module.scss";
 
@@ -29,48 +29,60 @@ class Login extends Component {
         email: this.state.email,
         password: this.state.password
       })
+    }).then(response => {
+      if (response.status !== 200) {
+        response
+          .json()
+          .then(data => this.setState({ responseMessage: data.msg }));
+      } else {
+        response.json().then(data => this.props.loadUser(data));
+      }
     });
     event.preventDefault();
   };
 
   render() {
-    return (
-      <section className={styles.container}>
-        <h1>Login</h1>
-        <form className={styles.form_wrapper} onSubmit={this.onLoginSubmit}>
-          <p>{this.state.responseMessage}</p>
-          <div className={styles.input_wrapper}>
-            <label htmlFor="email">Email:</label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              onChange={this.onEmailChange}
-              required
-            />
+    if (!this.props.signedIn) {
+      return (
+        <section className={styles.container}>
+          <h1>Login</h1>
+          <form className={styles.form_wrapper} onSubmit={this.onLoginSubmit}>
+            <p>{this.state.responseMessage}</p>
+            <div className={styles.input_wrapper}>
+              <label htmlFor="email">Email:</label>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                onChange={this.onEmailChange}
+                required
+              />
+            </div>
+            <div className={styles.input_wrapper}>
+              <label htmlFor="password">Password:</label>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                onChange={this.onPasswordChange}
+                required
+              />
+            </div>
+            <div>
+              <input type="submit" value="Log in" />
+            </div>
+          </form>
+          <div className={styles.navigation}>
+            <span>
+              Need to sign up? <Link to="/login">Sign up here</Link>
+            </span>
+            <Link to="/register">Return</Link>
           </div>
-          <div className={styles.input_wrapper}>
-            <label htmlFor="password">Password:</label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              onChange={this.onPasswordChange}
-              required
-            />
-          </div>
-          <div>
-            <input type="submit" value="Register" />
-          </div>
-        </form>
-        <div className={styles.navigation}>
-          <span>
-            Need to sign up? <Link to="/login">Sign up here</Link>
-          </span>
-          <Link to="/register">Return</Link>
-        </div>
-      </section>
-    );
+        </section>
+      );
+    } else {
+      return <Redirect to="/" />;
+    }
   }
 }
 
