@@ -8,25 +8,28 @@ import styles from "./header.module.scss";
 const Header = ({ signedIn, username }) => (
   <header className={styles.container}>
     <h1 className={styles.brand}>URL SHORT</h1>
-    <p>Welcome, {username}</p>
-
-    {signedIn ? (
-      <Link className={styles.navlink} to="/signout">
-        Sign Out
-      </Link>
-    ) : (
-      <span>
-        <Link className={styles.navlink} to="/">
-          Shortener
-        </Link>
-        <Link className={styles.navlink} to="/login">
-          Login
-        </Link>
-        <Link className={styles.navlink} to="/register">
-          Register
-        </Link>
-      </span>
-    )}
+    <span>
+      {signedIn ? (
+        <React.Fragment>
+          <p>Welcome, {username}</p>
+          <Link className={styles.navlink} to="/signout">
+            Sign Out
+          </Link>
+        </React.Fragment>
+      ) : (
+        <React.Fragment>
+          <Link className={styles.navlink} to="/">
+            Shortener
+          </Link>
+          <Link className={styles.navlink} to="/login">
+            Login
+          </Link>
+          <Link className={styles.navlink} to="/register">
+            Register
+          </Link>
+        </React.Fragment>
+      )}
+    </span>
   </header>
 );
 
