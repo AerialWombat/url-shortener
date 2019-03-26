@@ -68,16 +68,13 @@ class Register extends Component {
         username: this.state.username,
         password: this.state.password
       })
-    }).then(
-      response => {
-        if (response.status !== 200) {
-          response
-            .json()
-            .then(data => this.setState({ responseMessage: data.msg }));
-        } else this.setState({ registrationComplete: true });
-      }
-      // response.json().then(data => this.setState({ responseMessage: data.msg }))
-    );
+    }).then(response => {
+      if (response.status !== 200) {
+        response
+          .json()
+          .then(data => this.setState({ responseMessage: data.msg }));
+      } else this.setState({ registrationComplete: true });
+    });
     event.preventDefault();
   };
 
