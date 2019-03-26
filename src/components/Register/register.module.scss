@@ -49,6 +49,17 @@
       }
     }
   }
+
+  .navigation {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+
+    a {
+      color: $accent-color;
+    }
+  }
 }
 
 .containerComplete {

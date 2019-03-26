@@ -154,6 +154,12 @@ class Register extends Component {
               <input type="submit" value="Register" />
             </div>
           </form>
+          <div className={styles.navigation}>
+            <span>
+              Already signed up? <Link to="/login">Sign in here</Link>
+            </span>
+            <Link to="/">Return</Link>
+          </div>
         </section>
       );
     } else {
