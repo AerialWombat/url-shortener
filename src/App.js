@@ -26,14 +26,29 @@ class App extends Component {
     });
   };
 
+  unloadUser = () => {
+    this.setState({
+      signedIn: false,
+      user: {
+        username: null,
+        email: null
+      }
+    });
+  };
+
   render() {
     return (
       <div className="App">
         <Header
           signedIn={this.state.signedIn}
           username={this.state.user.username}
+          unloadUser={this.unloadUser}
         />
-        <Main signedIn={this.state.signedIn} loadUser={this.loadUser} />
+        <Main
+          signedIn={this.state.signedIn}
+          loadUser={this.loadUser}
+          unloadUser={this.unloadUser}
+        />
       </div>
     );
   }

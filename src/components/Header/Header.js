@@ -5,16 +5,16 @@ import styles from "./header.module.scss";
 
 // Will need to use state to determine shown options based on log-in status
 // ^ Nevermind, boolean prop should be fine
-const Header = ({ signedIn, username }) => (
+const Header = ({ signedIn, username, unloadUser }) => (
   <header className={styles.container}>
     <h1 className={styles.brand}>URL SHORT</h1>
     <span>
       {signedIn ? (
         <React.Fragment>
           <p>Welcome, {username}</p>
-          <Link className={styles.navlink} to="/signout">
+          <button className={styles.navlink} onClick={unloadUser}>
             Sign Out
-          </Link>
+          </button>
         </React.Fragment>
       ) : (
         <React.Fragment>
