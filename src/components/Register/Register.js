@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+
 import styles from "./register.module.scss";
 
 class Register extends Component {
