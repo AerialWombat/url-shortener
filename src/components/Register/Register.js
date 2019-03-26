@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styles from "./register.module.scss";
 
 class Register extends Component {
@@ -91,7 +91,7 @@ class Register extends Component {
     // Redirect if registration complete
     if (!registrationComplete) {
       return (
-        <div className={styles.container}>
+        <section className={styles.container}>
           <h1>Register</h1>
           <form
             className={styles.form_wrapper}
@@ -154,10 +154,17 @@ class Register extends Component {
               <input type="submit" value="Register" />
             </div>
           </form>
-        </div>
+        </section>
       );
     } else {
-      return <Redirect to="/" />;
+      return (
+        <section>
+          <div>
+            <h1>Registration complete</h1>
+            <Link to="/">Return</Link>
+          </div>
+        </section>
+      );
     }
   }
 }
