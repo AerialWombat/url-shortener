@@ -6,14 +6,19 @@ import Register from "../Register/Register";
 
 import styles from "./main.module.scss";
 
-const Main = ({ signedIn, loadUser, unloadUser }) => (
+const Main = ({ signedIn, username, loadUser }) => (
   <main className={styles.container}>
     <Switch>
       <Route exact path="/" component={Shortener} />
       <Route
         path="/login"
         render={props => (
-          <Login {...props} signedIn={signedIn} loadUser={loadUser} />
+          <Login
+            {...props}
+            signedIn={signedIn}
+            username={username}
+            loadUser={loadUser}
+          />
         )}
       />
       <Route path="/register" component={Register} />

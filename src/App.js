@@ -46,6 +46,7 @@ class App extends Component {
         />
         <Main
           signedIn={this.state.signedIn}
+          username={this.state.user.username}
           loadUser={this.loadUser}
           unloadUser={this.unloadUser}
         />
