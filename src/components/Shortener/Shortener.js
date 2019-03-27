@@ -10,6 +10,7 @@ class Shortener extends Component {
       shortUrl: "",
       responseMessage: null
     };
+    this.resultDisplay = React.createRef();
   }
 
   onLongUrlChange = event => {
@@ -33,11 +34,16 @@ class Shortener extends Component {
       .then(data => {
         console.log(data);
         this.setState({
-          shortUrl: data.slug,
+          shortUrl: data.shortUrl,
           responseMessage: data.msg
         });
       });
     event.preventDefault();
+  };
+
+  onCopyToClipboard = () => {
+    this.resultDisplay.current.select();
+    document.execCommand("copy");
   };
 
   render() {
@@ -66,11 +72,12 @@ class Shortener extends Component {
             type="url"
             name="shortUrl"
             placeholder="Shortened URL"
+            ref={this.resultDisplay}
             value={this.state.shortUrl}
             readOnly
             onChange={this.onShortUrlChange}
           />
-          <button>Copy</button>
+          <button onClick={this.onCopyToClipboard}>Copy</button>
         </div>
       </div>
     );

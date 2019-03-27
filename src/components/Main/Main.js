@@ -9,7 +9,11 @@ import styles from "./main.module.scss";
 const Main = ({ signedIn, username, loadUser }) => (
   <main className={styles.container}>
     <Switch>
-      <Route exact path="/" component={Shortener} />
+      <Route
+        exact
+        path="/"
+        render={props => <Shortener {...props} username={username} />}
+      />
       <Route
         path="/login"
         render={props => (
