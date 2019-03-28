@@ -1,24 +1,22 @@
 import React, { Component } from "react";
 
+import styles from "./shortener.module.scss";
+
 class Shortener extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // signedIn: null
       username: props.username,
       longUrl: null,
       shortUrl: "",
-      responseMessage: null
+      responseMessage: null,
+      copied: false
     };
     this.resultDisplay = React.createRef();
   }
 
   onLongUrlChange = event => {
     this.setState({ longUrl: event.target.value });
-  };
-
-  onShortUrlChange = event => {
-    this.setState({ shortUrl: event.target.value });
   };
 
   onShortnerSubmit = event => {
@@ -35,24 +33,27 @@ class Shortener extends Component {
         console.log(data);
         this.setState({
           shortUrl: data.shortUrl,
-          responseMessage: data.msg
+          responseMessage: data.msg,
+          copied: false
         });
       });
     event.preventDefault();
   };
 
-  onCopyToClipboard = () => {
+  onCopyToClipboard = event => {
     this.resultDisplay.current.select();
     document.execCommand("copy");
+    this.setState({ copied: true });
+    event.preventDefault();
   };
 
   render() {
     return (
-      <div>
-        <h1>/Shortener</h1>
-        <form onSubmit={this.onShortnerSubmit}>
+      <section className={styles.container}>
+        <h1>Shortener</h1>
+        <form className={styles.form_wrapper} onSubmit={this.onShortnerSubmit}>
           <p>{this.state.responseMessage}</p>
-          <div>
+          <div className={styles.input_wrapper}>
             <label htmlFor="longUrl">Long URL: </label>
             <input
               type="url"
@@ -62,24 +63,24 @@ class Shortener extends Component {
               required
               onChange={this.onLongUrlChange}
             />
-            <input type="submit" value="Shorten" />
           </div>
+          <input type="submit" value="Shorten" />
+          <div className={styles.input_wrapper}>
+            <label htmlFor="shortUrl">Shortened URL: </label>
+            <input
+              type="url"
+              name="shortUrl"
+              placeholder="Shortened URL"
+              ref={this.resultDisplay}
+              value={this.state.shortUrl}
+              readOnly
+            />
+          </div>
+          <button onClick={this.onCopyToClipboard}>
+            {this.state.copied ? "Copied!" : "Copy"}
+          </button>
         </form>
-
-        <div>
-          <label htmlFor="shortUrl">Shortened URL: </label>
-          <input
-            type="url"
-            name="shortUrl"
-            placeholder="Shortened URL"
-            ref={this.resultDisplay}
-            value={this.state.shortUrl}
-            readOnly
-            onChange={this.onShortUrlChange}
-          />
-          <button onClick={this.onCopyToClipboard}>Copy</button>
-        </div>
-      </div>
+      </section>
     );
   }
 }
