@@ -1,0 +1,50 @@
+@import "../../App.scss";
+
+main {
+  input:not([button]) {
+    background-color: inherit;
+    border: none;
+    border-bottom: solid 2px $accent-color;
+  }
+
+  input[type="submit"],
+  button {
+    border: none;
+    border-radius: 3px;
+    padding: 0.5rem 1rem;
+    min-width: 100px;
+    background-color: $accent-color;
+    color: #fff;
+    font-variant: small-caps;
+    letter-spacing: 1px;
+
+    cursor: pointer;
+    transition: 0.5s all ease;
+
+    &:hover {
+      background-color: #007f7d;
+    }
+  }
+}
+
+@media screen and (min-width: 760px) {
+  main {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    padding: 7.5% 10% 0 10%;
+
+    h1 {
+      font-size: 3rem;
+    }
+  }
+}
+
+@media screen and (min-width: 1140px) {
+  main {
+    padding: 7.5% 20% 0 20%;
+    h1 {
+      font-size: 3rem;
+    }
+  }
+}

@@ -48,6 +48,7 @@
       }
 
       input {
+        height: 2rem;
         width: 100%;
         padding: 0.25rem;
       }
@@ -79,6 +80,19 @@
     a {
       color: $accent-color;
       font-weight: bold;
+    }
+  }
+}
+
+@media screen and (min-width: 1140px) {
+  .container {
+    .form_wrapper {
+      .password_requirements {
+        li {
+          font-size: 1rem;
+          margin-bottom: 0.5rem;
+        }
+      }
     }
   }
 }
