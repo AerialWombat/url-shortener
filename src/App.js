@@ -7,11 +7,10 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      signedIn: false, //Don't know if needed
+      signedIn: false,
       user: {
         username: null,
         email: null
-        //list of urls
       }
     };
   }
