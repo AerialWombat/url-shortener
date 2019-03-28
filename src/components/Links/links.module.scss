@@ -1,0 +1,70 @@
+@import "../../App.scss";
+
+.container {
+  padding: 1rem;
+  min-width: 100%;
+
+  h1 {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+  }
+
+  .tableWrapper {
+    overflow-x: auto;
+
+    table {
+      font-size: 0.75rem;
+      border-collapse: collapse;
+
+      th {
+        min-width: 100%;
+        text-align: left;
+      }
+
+      tr {
+        min-width: 100%;
+        border-bottom: 2px solid $accent-color;
+        vertical-align: bottom;
+
+        td {
+          padding: 0.5rem 0;
+
+          a {
+            transition: 0.15s all ease;
+
+            &:hover {
+              color: $accent-color;
+            }
+          }
+        }
+      }
+
+      .responsive {
+        display: none;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 500px) {
+  .container {
+    .tableWrapper {
+      table {
+        .responsive {
+          display: table-cell;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 912px) {
+  .container {
+    .tableWrapper {
+      table {
+        font-size: 1rem;
+      }
+    }
+  }
+}

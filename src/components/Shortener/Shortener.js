@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Links from "../Links/Links";
 
 import styles from "./shortener.module.scss";
 
@@ -49,38 +50,44 @@ class Shortener extends Component {
 
   render() {
     return (
-      <section className={styles.container}>
-        <h1>Shortener</h1>
-        <form className={styles.form_wrapper} onSubmit={this.onShortnerSubmit}>
-          <p>{this.state.responseMessage}</p>
-          <div className={styles.input_wrapper}>
-            <label htmlFor="longUrl">Long URL: </label>
-            <input
-              type="url"
-              name="longUrl"
-              id="longUrl"
-              placeholder="https://example.com/"
-              required
-              onChange={this.onLongUrlChange}
-            />
-          </div>
-          <input type="submit" value="Shorten" />
-          <div className={styles.input_wrapper}>
-            <label htmlFor="shortUrl">Shortened URL: </label>
-            <input
-              type="url"
-              name="shortUrl"
-              placeholder="Shortened URL"
-              ref={this.resultDisplay}
-              value={this.state.shortUrl}
-              readOnly
-            />
-          </div>
-          <button onClick={this.onCopyToClipboard}>
-            {this.state.copied ? "Copied!" : "Copy"}
-          </button>
-        </form>
-      </section>
+      <React.Fragment>
+        <section className={styles.container}>
+          <h1>Shortener</h1>
+          <form
+            className={styles.form_wrapper}
+            onSubmit={this.onShortnerSubmit}
+          >
+            <p>{this.state.responseMessage}</p>
+            <div className={styles.input_wrapper}>
+              <label htmlFor="longUrl">Long URL: </label>
+              <input
+                type="url"
+                name="longUrl"
+                id="longUrl"
+                placeholder="https://example.com/"
+                required
+                onChange={this.onLongUrlChange}
+              />
+            </div>
+            <input type="submit" value="Shorten" />
+            <div className={styles.input_wrapper}>
+              <label htmlFor="shortUrl">Shortened URL: </label>
+              <input
+                type="url"
+                name="shortUrl"
+                placeholder="Shortened URL"
+                ref={this.resultDisplay}
+                value={this.state.shortUrl}
+                readOnly
+              />
+            </div>
+            <button onClick={this.onCopyToClipboard}>
+              {this.state.copied ? "Copied!" : "Copy"}
+            </button>
+          </form>
+        </section>
+        {this.state.username ? <Links username={this.state.username} /> : ""}
+      </React.Fragment>
     );
   }
 }
