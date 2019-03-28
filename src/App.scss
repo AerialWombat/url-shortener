@@ -2,13 +2,13 @@
 ======================================*/
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,700");
 $font-stack: "Roboto", Arial, Helvetica, sans-serif;
-$light-grey: #f2f2f2;
-$dark-grey: #c9cacc;
-$light-black: #222222;
-$dark-black: #171717;
-$accent-color: #45a51d;
+$light-grey: #f7f7f7;
+$dark-grey: #cccccc;
+$light-black: #333;
+$dark-black: #222222;
+$accent-color: #00a6a4;
 
-/* CSS Reset
+/* CSS Reset & Global Styles
 ======================================*/
 
 * {
@@ -23,27 +23,34 @@ body {
 }
 
 a {
-  color: #333;
+  color: $dark-black;
   text-decoration: none;
+}
+
+input:not([button]) {
+  background-color: inherit;
+  border: none;
+  border-bottom: solid 2px $accent-color;
+}
+
+input[type="submit"],
+button {
+  border: none;
+  border-radius: 3px;
+  padding: 0.5rem 1rem;
+  min-width: 100px;
+  background-color: $accent-color;
+  color: #fff;
+  font-variant: small-caps;
+  letter-spacing: 1px;
+
+  cursor: pointer;
+  transition: 0.5s all ease;
+
+  &:hover {
+    background-color: #007f7d;
+  }
 }
 
 /* General
 ======================================*/
-// body,
-// html {
-//   height: 100%;
-// }
-
-// :global {
-//   #root {
-//     height: 100%;
-
-//     .App {
-//       height: inherit;
-//     }
-//   }
-// }
-
-main {
-  background-color: $light-grey;
-}

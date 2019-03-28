@@ -1,0 +1,44 @@
+@import "../../App.scss";
+
+.container {
+  padding: 1rem;
+  width: 100%;
+
+  h1 {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .form_wrapper {
+    border: 3px $accent-color solid;
+    padding: 1rem;
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+    justify-content: center;
+
+    .input_wrapper {
+      margin: 0.5rem 0;
+      width: 100%;
+      display: flex;
+      flex-flow: column nowrap;
+
+      label {
+        margin-bottom: 0.5rem;
+        letter-spacing: 1px;
+        font-variant: small-caps;
+        font-weight: bold;
+      }
+
+      input {
+        height: 2rem;
+        width: 100%;
+        padding: 0.25rem;
+
+        &[type="url"] {
+          margin-bottom: 1rem;
+        }
+      }
+    }
+  }
+}

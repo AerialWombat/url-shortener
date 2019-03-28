@@ -3,10 +3,14 @@
 .container {
   padding: 1rem;
   width: 100%;
-  background: $dark-grey;
+
+  h1 {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
 
   .form_wrapper {
-    border: 1px lightcoral solid;
+    border: 3px $accent-color solid;
     padding: 1rem;
     display: flex;
     flex-flow: column;
@@ -21,7 +25,7 @@
         margin-bottom: 0.5rem;
 
         &.dashed {
-          color: red;
+          color: #f24965;
         }
 
         &.checked {
@@ -37,14 +41,14 @@
       flex-flow: column nowrap;
 
       label {
-        font-weight: bold;
         margin-bottom: 0.5rem;
+        letter-spacing: 1px;
+        font-variant: small-caps;
+        font-weight: bold;
       }
 
       input {
-        height: 2rem;
         width: 100%;
-        border: none;
         padding: 0.25rem;
       }
     }
