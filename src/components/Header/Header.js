@@ -1,36 +1,48 @@
-import React from "react";
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 import styles from "./header.module.scss";
 
-// Will need to use state to determine shown options based on log-in status
-// ^ Nevermind, boolean prop should be fine
-const Header = ({ signedIn, username, unloadUser }) => (
-  <header className={styles.container}>
-    <h1 className={styles.brand}>URL SHORT</h1>
-    <span>
-      {signedIn ? (
-        <React.Fragment>
-          <p>Welcome, {username}</p>
-          <button className={styles.navlink} onClick={unloadUser}>
-            Sign Out
-          </button>
-        </React.Fragment>
-      ) : (
-        <React.Fragment>
-          <Link className={styles.navlink} to="/">
-            Shortener
-          </Link>
-          <Link className={styles.navlink} to="/login">
-            Login
-          </Link>
-          <Link className={styles.navlink} to="/register">
-            Register
-          </Link>
-        </React.Fragment>
-      )}
-    </span>
-  </header>
-);
+class Header extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      expandMenu: false
+    };
+  }
+
+  render() {
+    return (
+      <header className={styles.container}>
+        <h1 className={styles.brand}>breve</h1>
+        {this.props.signedIn ? <p>{this.props.username}</p> : ``}
+        <nav>
+          {this.props.signedIn ? (
+            <React.Fragment>
+              <button
+                className={styles.navlink}
+                onClick={this.props.unloadUser}
+              >
+                Sign Out
+              </button>
+            </React.Fragment>
+          ) : (
+            <div>
+              <Link className={styles.navlink} to="/">
+                Home
+              </Link>
+              <Link className={styles.navlink} to="/login">
+                Login
+              </Link>
+              <Link className={styles.navlink} to="/register">
+                Register
+              </Link>
+            </div>
+          )}
+        </nav>
+      </header>
+    );
+  }
+}
 
 export default Header;
