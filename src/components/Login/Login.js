@@ -54,6 +54,7 @@ class Login extends Component {
                 type="email"
                 name="email"
                 id="email"
+                placeholder="johnsmith@example.com"
                 onChange={this.onEmailChange}
                 required
               />
@@ -64,6 +65,7 @@ class Login extends Component {
                 type="password"
                 name="password"
                 id="password"
+                placeholder="Password"
                 onChange={this.onPasswordChange}
                 required
               />
@@ -74,9 +76,9 @@ class Login extends Component {
           </form>
           <div className={styles.navigation}>
             <span>
-              Need to sign up? <Link to="/login">Sign up here</Link>
+              Need to sign up? <Link to="/register">Sign up here</Link>
             </span>
-            <Link to="/register">Return</Link>
+            <Link to="/">Return</Link>
           </div>
         </section>
       );

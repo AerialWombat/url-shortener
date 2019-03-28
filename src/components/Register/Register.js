@@ -105,6 +105,7 @@ class Register extends Component {
                 type="email"
                 name="email"
                 id="email"
+                placeholder="johnsmith@email.com"
                 onChange={this.onEmailChange}
                 required
               />
@@ -115,6 +116,7 @@ class Register extends Component {
                 type="text"
                 name="username"
                 id="username"
+                placeholder="Username"
                 onChange={this.onUsernameChange}
                 required
               />
@@ -125,6 +127,7 @@ class Register extends Component {
                 type="password"
                 name="password"
                 id="password"
+                placeholder="Password"
                 pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*(),.?:{}|<>]).{8,}"
                 title="Must contain at least one number, one uppercase and lowercase letter, one special character, and at least 8 or more characters"
                 onChange={this.onPasswordChange}
