@@ -22,7 +22,7 @@ class Shortener extends Component {
   };
 
   onShortnerSubmit = event => {
-    fetch("http://localhost:5000/api/shorten", {
+    fetch("https://url-short-api-4218.herokuapp.com/api/shorten", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -47,9 +47,14 @@ class Shortener extends Component {
   };
 
   getLinks = () => {
-    fetch(`http://localhost:5000/api/links/${this.state.username}`, {
-      method: "GET"
-    })
+    fetch(
+      `https://url-short-api-4218.herokuapp.com/api/links/${
+        this.state.username
+      }`,
+      {
+        method: "GET"
+      }
+    )
       .then(response => response.json())
       .then(data => this.setState({ links: data }));
   };
