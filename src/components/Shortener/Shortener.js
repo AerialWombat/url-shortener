@@ -11,7 +11,8 @@ class Shortener extends Component {
       longUrl: null,
       shortUrl: "",
       responseMessage: null,
-      copied: false
+      copied: false,
+      links: []
     };
     this.resultDisplay = React.createRef();
   }
@@ -31,14 +32,26 @@ class Shortener extends Component {
     })
       .then(response => response.json())
       .then(data => {
-        console.log(data);
         this.setState({
           shortUrl: data.shortUrl,
           responseMessage: data.msg,
           copied: false
         });
+        this.getLinks();
       });
     event.preventDefault();
+  };
+
+  componentDidMount = () => {
+    this.getLinks();
+  };
+
+  getLinks = () => {
+    fetch(`http://localhost:5000/api/links/${this.state.username}`, {
+      method: "GET"
+    })
+      .then(response => response.json())
+      .then(data => this.setState({ links: data }));
   };
 
   onCopyToClipboard = event => {
@@ -86,21 +99,10 @@ class Shortener extends Component {
             </button>
           </form>
         </section>
-        {this.state.username ? <Links username={this.state.username} /> : ""}
+        {this.state.username ? <Links links={this.state.links} /> : ""}
       </React.Fragment>
     );
   }
 }
 
 export default Shortener;
-
-// <div className={styles.input_wrapper}>
-// <label htmlFor="email">Email:</label>
-// <input
-//   type="email"
-//   name="email"
-//   id="email"
-//   onChange={this.onEmailChange}
-//   required
-// />
-// </div>
