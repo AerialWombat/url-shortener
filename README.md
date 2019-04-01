@@ -1,4 +1,4 @@
-# weatherNow
+# breve
 
 A mobile-friendly, front-end website built using ReactJS to interact with a [Node.js/Express API](https://github.com/AerialWombat/url-shortener-api) I built to shorten URLs.
 
