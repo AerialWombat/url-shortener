@@ -7,12 +7,12 @@ class Shortener extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: props.username,
+      username: props.user.username,
       longUrl: null,
       shortUrl: "",
       responseMessage: null,
       copied: false,
-      links: []
+      links: props.user.links
     };
     this.resultDisplay = React.createRef();
   }
@@ -37,27 +37,22 @@ class Shortener extends Component {
           responseMessage: data.msg,
           copied: false
         });
-        this.getLinks();
+        props.getLinks();
       });
     event.preventDefault();
   };
 
   componentDidMount = () => {
-    this.getLinks();
+    props.getLinks();
   };
 
-  getLinks = () => {
-    fetch(
-      `https://urlshrt0.herokuapp.com/api/links/${
-        this.state.username
-      }`,
-      {
-        method: "GET"
-      }
-    )
-      .then(response => response.json())
-      .then(data => this.setState({ links: data }));
-  };
+  // getLinks = () => {
+  //   fetch(`https://urlshrt0.herokuapp.com/api/links/${this.state.username}`, {
+  //     method: "GET"
+  //   })
+  //     .then(response => response.json())
+  //     .then(data => this.setState({ links: data }));
+  // };
 
   onCopyToClipboard = event => {
     this.resultDisplay.current.select();

@@ -10,7 +10,8 @@ class App extends Component {
       signedIn: false,
       user: {
         username: null,
-        email: null
+        email: null,
+        links: []
       }
     };
   }
@@ -25,12 +26,21 @@ class App extends Component {
     });
   };
 
+  getLinks = () => {
+    fetch(`https://urlshrt0.herokuapp.com/api/links/${this.state.username}`, {
+      method: "GET"
+    })
+      .then(response => response.json())
+      .then(data => this.setState({ links: data }));
+  };
+
   unloadUser = () => {
     this.setState({
       signedIn: false,
       user: {
         username: null,
-        email: null
+        email: null,
+        links: []
       }
     });
   };
@@ -45,9 +55,9 @@ class App extends Component {
         />
         <Main
           signedIn={this.state.signedIn}
-          username={this.state.user.username}
+          user={this.state.user}
           loadUser={this.loadUser}
-          unloadUser={this.unloadUser}
+          getLinks={this.getLinks}
         />
       </div>
     );
