@@ -1,8 +1,9 @@
 @import "../../App.scss";
 
 main {
-  background-color: #00a6a4;
   height: 100vh;
+  background-color: #00a6a4;
+
   input:not([button]) {
     background-color: inherit;
     border: none;
