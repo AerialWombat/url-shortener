@@ -69,8 +69,8 @@ class App extends Component {
         <Main
           signedIn={this.state.signedIn}
           user={this.state.user}
-          loadUser={this.loadUser}
           getLinks={this.getLinks}
+          loadUser={this.loadUser}
         />
       </div>
     );

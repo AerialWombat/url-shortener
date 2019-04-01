@@ -1,12 +1,12 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import Shortener from "../Shortener/Shortener";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
+import Shortener from "../Shortener/Shortener";
 
 import styles from "./main.module.scss";
 
-const Main = ({ signedIn, user, loadUser, getLinks }) => (
+const Main = ({ signedIn, user, getLinks, loadUser }) => (
   <main className={styles.container}>
     <Switch>
       <Route
