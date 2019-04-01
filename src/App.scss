@@ -27,5 +27,14 @@ a {
   text-decoration: none;
 }
 
+:global {
+  html,
+  body,
+  #root,
+  .App {
+    height: 100%;
+  }
+}
+
 /* General
 ======================================*/
