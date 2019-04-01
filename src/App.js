@@ -17,25 +17,38 @@ class App extends Component {
   }
 
   loadUser = userData => {
-    this.setState({
-      signedIn: true,
-      user: {
-        username: userData.username,
-        email: userData.email
-      }
-    });
+    this.setState(
+      {
+        ...this.state,
+        signedIn: true,
+        user: {
+          username: userData.username,
+          email: userData.email
+        }
+      },
+      this.getLinks(userData.username)
+    );
   };
 
-  getLinks = () => {
-    fetch(`https://urlshrt0.herokuapp.com/api/links/${this.state.username}`, {
+  getLinks = username => {
+    fetch(`https://urlshrt0.herokuapp.com/api/links/${username}`, {
       method: "GET"
     })
       .then(response => response.json())
-      .then(data => this.setState({ links: data }));
+      .then(data =>
+        this.setState({
+          ...this.state,
+          user: {
+            ...this.state.user,
+            links: data
+          }
+        })
+      );
   };
 
   unloadUser = () => {
     this.setState({
+      ...this.state,
       signedIn: false,
       user: {
         username: null,

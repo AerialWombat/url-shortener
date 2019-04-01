@@ -12,7 +12,14 @@ const Main = ({ signedIn, user, loadUser, getLinks }) => (
       <Route
         exact
         path="/"
-        render={props => <Shortener {...props} user={user} />}
+        render={props => (
+          <Shortener
+            {...props}
+            signedIn={signedIn}
+            user={user}
+            getLinks={getLinks}
+          />
+        )}
       />
       <Route
         path="/login"
@@ -20,9 +27,8 @@ const Main = ({ signedIn, user, loadUser, getLinks }) => (
           <Login
             {...props}
             signedIn={signedIn}
-            loadUser={loadUser}
-            getLinks={getLinks}
             user={user}
+            loadUser={loadUser}
           />
         )}
       />
@@ -30,5 +36,4 @@ const Main = ({ signedIn, user, loadUser, getLinks }) => (
     </Switch>
   </main>
 );
-
 export default Main;

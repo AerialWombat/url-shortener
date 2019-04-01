@@ -7,12 +7,10 @@ class Shortener extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: props.user.username,
       longUrl: null,
       shortUrl: "",
       responseMessage: null,
-      copied: false,
-      links: props.user.links
+      copied: false
     };
     this.resultDisplay = React.createRef();
   }
@@ -27,7 +25,7 @@ class Shortener extends Component {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         longUrl: this.state.longUrl,
-        username: this.state.username
+        username: this.props.user.username
       })
     })
       .then(response => response.json())
@@ -37,22 +35,10 @@ class Shortener extends Component {
           responseMessage: data.msg,
           copied: false
         });
-        props.getLinks();
+        this.props.getLinks();
       });
     event.preventDefault();
   };
-
-  componentDidMount = () => {
-    props.getLinks();
-  };
-
-  // getLinks = () => {
-  //   fetch(`https://urlshrt0.herokuapp.com/api/links/${this.state.username}`, {
-  //     method: "GET"
-  //   })
-  //     .then(response => response.json())
-  //     .then(data => this.setState({ links: data }));
-  // };
 
   onCopyToClipboard = event => {
     this.resultDisplay.current.select();
@@ -99,7 +85,7 @@ class Shortener extends Component {
             </button>
           </form>
         </section>
-        {this.state.username ? <Links links={this.state.links} /> : ""}
+        {this.props.user.links ? <Links links={this.props.user.links} /> : ""}
       </React.Fragment>
     );
   }
