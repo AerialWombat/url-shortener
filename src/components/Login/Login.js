@@ -74,6 +74,11 @@ class Login extends Component {
               <input type="submit" value="Log in" />
             </div>
           </form>
+          <div className={styles.demoInfo}>
+          <h3>Demo account credentials: </h3>
+          <p><span>E-mail</span>: demo@email.com</p>
+          <p><span>Password</span>: pass</p>
+          </div>
           <div className={styles.navigation}>
             <span>
               Need to sign up? <Link to="/register">Sign up here</Link>
