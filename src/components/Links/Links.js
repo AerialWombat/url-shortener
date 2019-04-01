@@ -28,7 +28,7 @@ const Links = ({ links }) => {
                       href={link.longurl}
                       target="#"
                       rel="noopener noreferrer"
-                    >{`https://url-short-api-4218.herokuapp.com/${
+                    >{`https://urlshrt0.herokuapp.com/${
                       link.slug
                     }`}</a>
                   </td>

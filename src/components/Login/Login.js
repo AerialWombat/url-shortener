@@ -22,7 +22,7 @@ class Login extends Component {
   };
 
   onLoginSubmit = event => {
-    fetch("https://url-short-api-4218.herokuapp.com/api/login", {
+    fetch("https://urlshrt0.herokuapp.com/api/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
