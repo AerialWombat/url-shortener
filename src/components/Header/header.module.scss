@@ -1,6 +1,7 @@
 @import "../../App.scss";
 
 .container {
+  position: relative;
   height: 7.5vh;
   display: flex;
   flex-flow: row nowrap;
@@ -8,6 +9,7 @@
   align-items: flex-end;
   align-content: flex-end;
 
+  box-shadow: 1px 1px 8px #444;
   background-color: $dark-black;
 
   .brand {
