@@ -74,6 +74,7 @@ class Shortener extends Component {
               <input
                 type="url"
                 name="shortUrl"
+                id="shortUrl"
                 placeholder="Shortened URL"
                 ref={this.resultDisplay}
                 value={this.state.shortUrl}
